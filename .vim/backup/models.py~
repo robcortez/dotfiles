@@ -1,0 +1,71 @@
+from app import db
+
+# Roles
+ROLE_ADMIN = 1
+ROLE_USER = 2
+
+participants = db.Table('participants',
+        db.Column('user_id', db.Integer, db.ForeignKey('users.id')),
+        db.Column('event_id', db.Integer, db.ForeignKey('events.id'))
+)
+
+class User(db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    fname = db.Column(db.String(64), index=True)
+    lname = db.Column(db.String(64), index=True)
+    email = db.Column(db.String(128), index=True, unique=True)
+    password = db.Column(db.String(128))
+    handicap = db.Column(db.Integer)
+    access_level = db.Column(db.Integer, default=ROLE_USER)
+
+    def is_authenticated(self):
+        return True
+
+    def is_active(self):
+        return True
+
+    def is_anonymouse(self):
+        return False
+
+    def is_admin(self):
+        if self.access_level == ROLE_ADMIN:
+            return True
+        else:
+            return False
+
+
+    def get_id(self):
+        try:
+            return unicode(self.id) # python 2
+        except NameError:
+            return str(self.id) # python 3
+
+    def __repr__(self):
+        return '<User %r>' % (self.email)
+
+class Event(db.Model):
+    __tablename__ = 'events'
+    id = db.Column(db.Integer, primary_key=True)
+    event_name = db.Column(db.String(128), index=True)
+    datetime = db.Column(db.String(64), index=True)
+    price = db.Column(db.Integer, default=int('50'))
+    participants = db.relationship('User', secondary=participants,
+            backref=db.backref('events', lazy='dynamic'))
+
+    def register(self, user):
+        if not self.is_registered(user):
+            self.participants.append(user)
+            return self
+    
+    def unregister(self, user):
+        if self.is_registered(user):
+            self.participants.remove(user)
+            return self
+
+    def is_registered(self, user):
+        return self.query.join(User.events).filter(user.id == user.id).count() > 0 
+        #return self.query.join(User.events).filter(self.id == user.id).count() > 0
+
+    def __repr__(self):
+        return '<Event %r>' % (self.event_name)

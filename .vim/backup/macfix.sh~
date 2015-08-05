@@ -1,0 +1,11 @@
+#!/bin/bash
+
+networksetup -setv6off Wi-Fi
+sleep 1
+networksetup -setmanual Wi-Fi 10.1.64.1 255.0.0.0 10.1.1.1
+sleep 7
+networksetup -setdhcp Wi-Fi
+sleep 1
+networksetup -setairportpower en0 off
+sleep 10
+networksetup -setairportpower en0 on

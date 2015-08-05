@@ -1,0 +1,53 @@
+var autoSubmit = true;
+var showBanner = false;
+
+chrome.storage.sync.get({
+    // default values
+    autoSubmit: true,
+    showBanner: false
+  }, function(items) {
+    autoSubmit = items.autoSubmit;
+    showBanner = items.showBanner;
+  });
+
+function closeBanner() {
+    document.getElementById("answerBanner").style.display = 'none';
+    document.getElementById("bannerCloseButton").style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (document.getElementById("frmMTB")) {
+
+        // find the form with the training questions
+        var bubbleForm = document.getElementById("frmMTB");
+        
+        // get a reference to the grading javascript
+        var gradingScript = bubbleForm.getElementsByTagName('script');
+        var gradingScriptText = gradingScript[0].text;
+
+        // find the right answer in the script
+        var re = /if \(document\.frmMTB.rdoChoice1\[\d].checked\)/i;
+        var rightAnswer = gradingScriptText.match(re);
+        rightAnswer = rightAnswer[0].split("[");
+        rightAnswer = rightAnswer[1].charAt(0);
+        //console.log(rightAnswer);
+
+
+        // check the correct radio button
+        var choices = document.getElementsByName("rdoChoice1");
+        var bubble = choices[parseInt(rightAnswer)];
+        bubble.checked = true;
+
+        if (bannerShow) {
+            document.body.insertAdjacentHTML('afterbegin', '<div id="answerBanner"><div id="bannerCloseButton"><a href="#" id="closeButton"><i class="fa fa-close fa-lg"></i></a></div><i class="fa fa-check-circle-o fa-2x"></i><p>Correct answer: B</p></div>');
+            document.getElementById("closeButton").addEventListener('click', closeBanner);
+        }
+
+        if (autoSubmit) {
+            // click the submit button
+            document.getElementById("btnsubmit").click();
+        }
+
+    }
+
+});

@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row top-buffer">
+    
+    <!-- Start info -->
+    <div class="col-md-6">
+        <h1>Book your spot today.</h1>
+        <p>Lock down your spot today. Use the form to the right. 
+        Select the type of event you are having and how many people 
+        will be getting their makeup done.</p>
+        <p>Your deposit will hold your spot, however, they are non-refundable.</p>
+        <img src="{{url_for('static', filename='img/booking-side.jpg')}}" class="img-responsive img-border-black">
+    
+    </div>
+
+    <div class="col-md-5 top-buffer">
+        <div class="well">
+            <form action="#" method="post" role="form" class="form-horizontal" id="payment-form">
+                {{form.hidden_tag()}}
+                <div class="form-group">
+                    <label for="name" class="col-md-4 control-label">* Name</label>
+                    <div class="col-md-8">
+                        {{form.name(class_="form-control")}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-md-4 control-label">* Email</label>
+                    <div class="col-md-8">
+                        {{form.email(class_="form-control")}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address" class="col-md-4 control-label">* Address</label>
+                    <div class="col-md-8">
+                        {{form.address(class_="form-control")}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address2" class="col-md-4 control-label">Apt/Suite</label>
+                    <div class="col-md-8">
+                        {{form.address2(class_="form-control")}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="city" class="col-md-4 control-label">* City</label>
+                    <div class="col-md-8">
+                        {{form.city(class_="form-control")}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="state" class="col-md-4 control-label">* State</label>
+                    <div class="col-md-8">
+                        {{form.state(class_="form-control")}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="zipcode" class="col-md-4 control-label">* Zip Code</label>
+                    <div class="col-md-8">
+                        {{form.zipcode(class_="form-control")}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="state" class="col-md-4 control-label">* Event Type</label>
+                    <div class="col-md-8">
+                        {{form.event_type(class_="form-control")}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="clients" class="col-md-4 control-label">* Num. of Clients</label>
+                    <div class="col-md-1 form-control-static">
+                        <span id="sliderVal" class="form-control-static">1</span>
+                    </div>
+                    <div class="col-md-7 form-control-static">
+
+                        {{form.clients(class_="form-control", **{'data-slider-min':'1',
+                        'data-slider-max':'10', 'data-slider-step':'1','data-slider-value':'1'})}}
+                    </div>
+                </div>
+                <div class="row bottom-buffer text-center">
+                    <h3>Total deposit due<br><span class="glyphicon glyphicon-usd" id="dollar-sign"></span>
+                        <span id="totalDeposit">0</span>
+                    </h3>
+                </div>
+                <div class="form-group">
+                    <label for="cc_num" class="col-md-4 control-label">Credit Card #</label>
+                    <div class="col-md-8">
+                        {{form.cc_num(class_="form-control", **{'data-stripe':'number'})}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cc_cvc" class="col-md-4 control-label">CVC</label>
+                    <div class="col-md-3">
+                        {{form.cc_cvc(class_="form-control", maxlength=4, **{'data-stripe':'cvc'})}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cc_num" class="col-md-4 control-label">Expiration Date</label>
+                    <div class="col-md-4">
+                        {{form.cc_exp_month(class_="form-control", **{'data-stripe':'exp-month'})}}
+                    </div>
+                    <div class="col-md-4">
+                        {{form.cc_exp_year(class_="form-control", **{'data-stripe':'exp-year'})}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        {% for message in messages %}
+                        <p>{{message}}</p>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                        <span class="payment-errors"></span>
+                    </div>
+                </div>
+                {{form.stripe_token}}
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-5">
+                        <button type="submit" class="btn btn-block btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

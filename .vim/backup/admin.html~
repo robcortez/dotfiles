@@ -1,0 +1,109 @@
+{% extends "admin_base.html" %}
+
+{% block content %}
+<div class="row admin-greeting">
+    <h1>Admin Dashboard</h1>
+</div>
+
+<div class="col-lg-4 col-md-4">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-users fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">97</div>
+                    <div>Registered users</div>
+                </div>
+            </div>
+        </div>
+        <a href="#">
+            <div class="panel-footer">
+                <span class="pull-left">View Users</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="col-lg-4 col-md-4">
+    <div class="panel panel-yellow">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-calendar fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">7</div>
+                    <div>Scheduled events</div>
+                </div>
+            </div>
+        </div>
+        <a href="#">
+            <div class="panel-footer">
+                <span class="pull-left">View Events</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+<div class="col-lg-4 col-md-4">
+    <div class="panel panel-green">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-usd fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">13</div>
+                    <div>Registered for Jun 07, 2015</div>
+                </div>
+            </div>
+        </div>
+        <a href="#">
+            <div class="panel-footer">
+                <span class="pull-left">View Paid Participants</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+
+<div class="col-md-6" id="admin-upcoming-events">
+    <h3 style="text-align:center; margin-bottom: 5px;">Upcoming Events</h3>
+    <table class="table table-striped admin-upcoming-events">
+        <thead>
+            <tr>
+                <td>Event</td>
+                <td>Date/Time</td>
+                <td style="text-align: center;">Registered</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for e in events %}
+            <tr>
+                <td><a href="/event/{{e.id}}">{{e.event_name}}</a></td>
+                <td>{{e.datetime}}</td>
+                <td style="text-align: center;">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="13" aria-valuemin="0" aria-valuemax="60" style="width:23%;">
+                            13
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+</table>
+</div>
+
+
+{% endblock %}

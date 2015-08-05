@@ -1,0 +1,85 @@
+import curses, sys, time
+from TwitterAPI import TwitterAPI
+from curses import wrapper
+import random, re
+
+api = TwitterAPI('N0vmKKYPV8oSNpnv6HYBQ', 'kvY5FSfidwGHDotW42OYbbHatqrDTfLSxCpmJyOfQH0', '15007150-xAnX382HEDOYavXFSqygA6vnLoyHnW7cPpdrCERkS', 'Dsdf4ki3nzhUFZCjbzmyuCZR06YE7rRAG7LXKfVPFE')
+
+screen = curses.initscr()
+curses.noecho()
+curses.cbreak()
+curses.curs_set(0)
+screen.keypad(1)
+screen = curses.initscr()
+dims = screen.getmaxyx()
+
+# Globals
+total_tweets = 0
+total_skipped = 0
+total_favs = 0
+
+def main(screen):
+
+    win_tl = screen.subwin(dims[0]/4, dims[1]/2, 0, 0)
+    win_tl.border(0)
+    win_tr = screen.subwin(dims[0]/4, dims[1]/2, 0, dims[1]/2)
+    win_tr.border(0)
+    win_tr.addstr(0, 3, "Current Status", curses.A_BOLD)
+    win_tl.addstr(0, 3, "Stats", curses.A_BOLD)
+    win_tl.addstr(2, 2, "Tweets Favorited: 2344")
+    screen.redrawwin()
+    screen.refresh()
+
+    api.request('statuses/filter', {'track':sys.argv[1]})
+    iter = api.get_iterator()
+    for tweet in iter:
+        update_win_tr(win_tr, tweet)
+        if tweet['user']['followers_count'] > 15:
+            m = re.search("[^a-zA-Z0-9\?\.\-#@:/!,_'\+\s]", tweet['text'])
+            if m:
+                update_win_tl(win_tl, False)
+            else:
+               time.sleep(random.randint(20,70))
+               try:
+                    api.request('favorites/create', {'id':tweet['id']})
+                    update_win_tl(win_tl, True)
+               except:
+                   update_win_tl(win_tl, False)
+        else:
+            update_win_tl(win_tl, False)
+        curses.doupdate()
+
+    cmd = screen.getch()
+    sys.exit()
+
+def update_win_tl(win_tl, fav_added):
+    global total_tweets
+    total_tweets += 1
+
+    if fav_added:
+       global total_favs
+       total_favs += 1
+
+    else:
+        global total_skipped
+        total_skipped += 1
+    
+    win_tl.clear()
+    win_tl.border(0)
+    win_tl.addstr(0, 3, "Stats", curses.A_BOLD)
+    win_tl.addstr(2, 2, "Tweets Found: " + str(total_tweets))
+    win_tl.addstr(3, 2, "Tweets Skipped: " + str(total_skipped))
+    win_tl.addstr(4, 2, "Tweets Favorited: " + str(total_favs))
+    win_tl.noutrefresh()
+
+def update_win_tr(win_tr, tweet):
+    win_tr.clear()
+    win_tr.border(0)
+    win_tr.addstr(0, 3, "Current Tweet", curses.A_BOLD)
+    win_tr.addstr(2, 2, "Date: " + tweet['created_at'])
+    win_tr.addstr(3, 2, "User: " + tweet['user']['screen_name'])
+    win_tr.addstr(5, 2, tweet['text'])
+    win_tr.noutrefresh()
+
+
+wrapper(main)

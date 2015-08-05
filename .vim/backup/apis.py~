@@ -1,0 +1,37 @@
+from instagram import client
+
+# Instagram
+################
+
+class Instagram(client.InstagramAPI):
+
+    CONFIG = {
+            'client_id' : 'c369d72cae1a474183e0d3e20befbb9b',
+            'client_secret' : 'b5ce587a173d413ca0f8019609cbea1d',
+            'redirect_uri' : 'http://localhost:5000/social/instagram/oauth_callback'
+    }
+
+    def __init__(self):
+        client.InstagramAPI.__init__(self)
+
+    def get_auth_url(self):
+        api = client.InstagramAPI(**self.CONFIG)
+        url = api.get_authorize_url(scope=["likes", "comments"])
+        return url
+
+    def get_access_token(self, code):
+        api = client.InstagramAPI(**self.CONFIG)
+        access_token = api.exchange_code_for_access_token(code)
+        return access_token
+
+    def get_auth_api(self, access_token):
+        api = client.InstagramAPI(access_token=access_token)
+        return api
+
+    
+
+
+
+    
+
+

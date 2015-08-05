@@ -1,0 +1,14 @@
+#!/bin/env python
+
+from mutagen.id3 import ID3
+import argparse
+import os, sys
+
+
+input_dir = sys.argv[1]
+
+filenames = os.listdir(input_dir)
+
+for audio in filenames:
+    tag = ID3(input_dir + audio)
+    print tag.getall("TIT2")

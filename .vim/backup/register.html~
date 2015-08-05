@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-error alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ message }}
+                </div> <!-- alert -->
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
+
+    <form action="#" method="post" name="login" class="form-horizontal form-reg">
+        <h2 class="form-reg-heading">Registration</h2>
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            <label for="fname" class="col-sm-4 control-label">Full Name</label>
+            <div class="col-sm-4">
+                {{ form.fname(class_="form-control",id="fname",placeholder="First name") }}
+            </div>
+            <div class="col-sm-4">
+                {{ form.lname(class_="form-control",id="lname",placeholder="Last name") }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lname" class="col-sm-4 control-label">Last name</label>
+            <div class="col-sm-8">
+                {{ form.lname(class_="form-control",id="lname",placeholder="Last name") }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-sm-4 control-label">Email</label>
+            <div class="col-sm-8">
+                {{ form.email(class_="form-control",id="email",type="email",placeholder="Email") }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password1" class="col-sm-4 control-label">Password</label>
+            <div class="col-sm-8">
+                {{ form.password1(class_="form-control",id="password1",placeholder="Password") }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password2" class="col-sm-4 control-label">Confirm password</label>
+            <div class="col-sm-8">
+                {{ form.password2(class_="form-control",id="password2",placeholder="Confirm password") }}
+            </div>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+    </form>
+
+{% endblock %}

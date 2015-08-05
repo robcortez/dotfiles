@@ -1,0 +1,37 @@
+#!bin/python
+
+from TwitterAPI import TwitterAPI
+import random, sys
+import time
+import re
+
+api = TwitterAPI('N0vmKKYPV8oSNpnv6HYBQ', 'kvY5FSfidwGHDotW42OYbbHatqrDTfLSxCpmJyOfQH0', '15007150-xAnX382HEDOYavXFSqygA6vnLoyHnW7cPpdrCERkS', 'Dsdf4ki3nzhUFZCjbzmyuCZR06YE7rRAG7LXKfVPFE')
+
+
+queue = []
+
+api.request('statuses/filter', {'track':sys.argv[1]})
+iter = api.get_iterator()
+for tweet in iter:
+    print "Found tweet: %s" % tweet['id_str']
+    print tweet['text']
+    print "User: " + tweet['user']['screen_name'] + ", followers: " + str(tweet['user']['followers_count'])
+    if tweet['user']['followers_count'] > 15:
+        m = re.search("[^a-zA-Z0-9\?\.\-#@:/!,_'\+\s]", tweet['text'])
+        if m:
+            print "Either spam or not English. Moving on."
+        else:
+            if 'http://t.co' not in tweet['text']:
+                time.sleep(random.randint(20,70))
+                try:
+                    api.request('favorites/create', {'id':tweet['id']})
+                    print "Favorited tweet"
+                except:
+                    print "Unable to favorite tweet"
+            else:
+                print "Skipping. Just spam."
+    else:
+        print "No followers. Probably spam."
+
+while 1:
+    pass

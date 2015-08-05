@@ -1,0 +1,214 @@
+body { 
+    padding-top: 80px;
+    background: #fff;
+}
+
+#header {
+    width: 100%;
+    height: 110px;
+    padding: 20px 0px;
+}
+
+#logo {
+}
+
+.navbar-brand {
+    font-family: 'Great Vibes', cursive;
+    font-weight: normal;
+    font-size: 280%;
+    text-transform: none;
+    color: #111;
+}
+
+.navbar-brand {
+    background-color: transparent !important;
+}
+
+.navbar {
+    padding: 10px 30px;
+}
+
+.navbar-default {
+    border-color: #fff;
+}
+
+#logo a:hover {
+    text-decoration: none;
+}
+
+#nav {
+    margin-top: 20px;
+    font-size: 120%;
+}
+
+#footer {
+    margin-top: 30px;
+    padding: 20px 40px;
+    background: #333;
+    color: #eee;
+}
+
+#slideshow {
+    text-align: right;
+}
+
+#quotes {
+    height: 70px;
+    width: 100%;
+}
+
+#sliderVal {
+    font-weight:bold;
+}
+
+.sswrapper {
+    background: #333;
+}
+
+.slider-selection {
+    background: #eb6864;
+}
+
+.slider-handle {
+    background: #777;
+    opacity: 1.00;
+}
+
+.inslide {
+    line-height: 8px;
+    height: 80px !important;
+    width: 100%;
+}
+
+.bigquote {
+    color: #fff;
+    text-align: center;
+    font-size:185%;
+    text-shadow: 1px 1px #111;
+}
+
+.author {
+    color: #eee;
+    font-size: 120%;
+    opacity: 0.65;
+}
+
+.nav-pills li a {
+    padding: 5px 5px;
+    margin: 10px 7px;
+}
+
+.nav-pills li a:hover {
+    background-color: transparent;
+    border-radius: 0px;
+    border-bottom: 3px #eee solid;
+}
+
+table thead tr td {
+    font-weight: bold;
+}
+
+.insta-banner {
+    padding: 0px;
+    margin: 0px;
+}
+
+#client-num {
+    padding: 0px 15px;
+    font-size: 140%;
+}
+
+.inc-button {
+    margin-top: 3px;
+}
+
+#intro {
+    margin-top: 40px;
+}
+
+#intropic img {
+    width: 150px;
+    height: 150px;
+}
+
+#intropic {
+    padding: 0px 20px 0px 0px;
+}
+
+#dollar-sign {
+    font-size: 75%;
+}
+
+#totalDeposit {
+    font-size: 100%;
+    font-weight: bold;
+}
+
+.about-img {
+    padding: 13px;
+    border-radius: 30px;
+}
+
+.jumbotron {
+    background: #333;
+    color: #FFF;
+    border-radius: 0px;
+}
+
+.jumbotron-sm { 
+    padding-top: 4px;
+    padding-bottom: 14px; }
+
+.jumbotron small {
+    color: #FFF;
+}
+
+.h1 small {
+    font-size: 24px;
+}
+
+.panel {
+    border: 0px;
+}
+
+.panel-heading {
+    background: #fff !important;
+    padding-bottom: 0px;
+}
+
+.panel-heading {
+    border: 0px !important;
+}
+
+.panel-heading h4 {
+    font-family: 'Great Vibes', cursive;
+    font-weight: normal;
+    font-size: 350%;
+    color: #111;
+    //text-shadow: 1px 1px #999;
+    opacity: 1.0;
+}
+
+.lead { 
+    font-size: 33px;
+    margin-bottom:0px; 
+}
+
+// Helpers
+
+.top-buffer {
+    margin-top: 20px;
+}
+
+.bottom-buffer {
+    padding-bottom:20px;
+}
+
+.img-border-black {
+    border: 5px #eee solid;
+    border-radius: 10px;
+}
+
+.no-pad {
+    padding: 0px;
+}

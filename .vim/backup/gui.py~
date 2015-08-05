@@ -1,0 +1,130 @@
+#!bin/python
+
+from Tkinter import *
+from ttk import *
+from TwitterAPI import TwitterAPI
+import sys, time
+import threading
+
+api = TwitterAPI('N0vmKKYPV8oSNpnv6HYBQ', 'kvY5FSfidwGHDotW42OYbbHatqrDTfLSxCpmJyOfQH0', '15007150-xAnX382HEDOYavXFSqygA6vnLoyHnW7cPpdrCERkS', 'Dsdf4ki3nzhUFZCjbzmyuCZR06YE7rRAG7LXKfVPFE')
+
+class Example(Frame):
+    
+    def __init__(self, parent):
+        Frame.__init__(self, parent)
+        self.parent = parent
+        self.tweet_count = 0
+        self.fav_count = 0
+        self.skip_count = 0
+        self.initUI()
+        t = threading.Thread(target=get_tweets, args=('ubuntu'))
+        t.daemon = True
+        t.start()
+
+    def initUI(self):
+
+        self.parent.title("FollowMe")
+        self.style = Style()
+        self.style.theme_use("default")
+
+        self.columnconfigure(0, pad=25)
+        self.columnconfigure(1, pad=25, minsize=130)
+        self.columnconfigure(2, pad=25)
+        self.columnconfigure(3, minsize=180)
+        self.rowconfigure(0, pad=30)
+        self.rowconfigure((1,2,3,4), pad=10)
+
+        stats_heading = Label(self, text="Stats")
+        stats_heading.grid(row=0, column=0, columnspan=2)
+
+
+        Label(self, text="Tweets Found").grid(row=1, column=0, sticky=W)
+        Label(self, text="Tweets Skipped").grid(row=2, column=0, sticky=W)
+        Label(self, text="Tweets Favorited").grid(row=3, column=0, sticky=W)
+        Label(self, text="Current Status").grid(row=4, column=0, sticky=W)
+        
+        tweets_found = Label(self, text="0")
+        tweets_found.grid(row=1, column=1, sticky=W)
+        tweets_skipped = Label(self, text="0")
+        tweets_skipped.grid(row=2, column=1, sticky=W)
+        tweets_favorited = Label(self, text="0")
+        tweets_favorited.grid(row=3, column=1, sticky=W)
+        current_status = Label(self, text="Stopped")
+        current_status.grid(row=4, column=1, ipadx=10, sticky=W)
+
+        Label(self, text="Followers").grid(row=0, column=2, columnspan=2)
+        Label(self, text="Current Followers").grid(row=1, column=2, sticky=W)
+        Label(self, text="Original Followers").grid(row=2, column=2, sticky=W)
+        Label(self, text="Followers Gained").grid(row=3, column=2, sticky=W)
+        Label(self, text="Last Updated").grid(row=4, column=2, sticky=W)
+ 
+        current_followers = Label(self, text="0")
+        current_followers.grid(row=1, column=3, sticky=W)
+        og_followers = Label(self, text="0")
+        og_followers.grid(row=2, column=3, sticky=W)
+        new_followers = Label(self, text="0")
+        new_followers.grid(row=3, column=3, sticky=W)
+        self.last_updated = Label(self, text="12:30 PM 10/31/2013")
+        self.last_updated.grid(row=4, column=3, ipadx=10, sticky=W)
+
+        # Start bottom half
+
+        Label(self, text="Current Tweet").grid(row=5, column=0, columnspan=4, pady=25)
+        self.username = Label(self, text="@joesmith39")
+        self.username.grid(row=6, column=0, columnspan=2)
+        self.user_followers = Label(self, text="4093 followers")
+        self.user_followers.grid(row=6, column=2, columnspan=2)
+        self.current_tweet = Label(self, text="this is wicked cool. I can type numerous things and still fuck mad bitches. #fuckthisgame bitch", width=60, wraplength=500)
+        self.current_tweet.grid(row=7, column=0, columnspan=4, ipady=20)
+        self.pack()
+
+
+    def start(self):
+        self.last_updated.config(text="Love")
+       
+    def update_stats(self, fav):
+        self.tweet_count += 1
+        if fav:
+            self.fav_count += 1
+        else:
+            self.skip_count += 1
+
+        self.tweets_found.config(text=str(self.tweet_count))
+        self.tweets_skipped.config(text=str(self.skip_count))
+        self.tweets_favorited.config(text=str(self.fav_count))
+
+    def update_followers(self):
+        pass
+
+    def update_current_tweet(self, tweet):
+        self.username.config(text=tweet['user']['screen_name'])
+        self.user_followers.config(text=tweet['user']['followers_count'])
+        self.current_tweet.config(text=tweet['text'])
+
+    def get_tweets(track_term):
+        api.request('statuses/filter', {'track':track_term})
+        iter = api.get_iterator()
+        for tweet in iter:
+            update_current_tweet(tweet)
+            if tweet['user']['followers_count'] > 15:
+                m = re.search("[^a-zA-Z0-9\?\.\-#@:/!,_'\+\s]", tweet['text'])
+                if m:
+                    update_stats(False)
+                else:
+                   time.sleep(random.randint(20,70))
+                   try:
+                        api.request('favorites/create', {'id':tweet['id']})
+                        update_stats(True)
+                   except:
+                       update_stats(False)
+            else:
+                update_stats(False)
+     
+
+def main():
+    top = Tk()
+    app = Example(top)
+    top.mainloop()
+
+if __name__ == '__main__':
+    main()

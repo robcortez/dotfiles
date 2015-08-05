@@ -1,0 +1,49 @@
+#!/bin/bash
+
+DIRECTORY=""
+
+if [ "$1" != "" ]; then
+    if [ -d "$1" ]; then
+        DIRECTORY=$1
+    else 
+        echo "Not a valid directory"
+        exit 2 # exit and throw error
+    fi
+else
+    echo "You must specify a directory"
+    exit 2
+fi
+
+COVER=$(find "$DIRECTORY" -type d '!' -exec bash -c 'ls -1 "{}" | egrep -i "^(cover|front)\.(jpg|png)$"' ';')
+HASCOVER=false
+
+if [ -n $COVER ]; then
+    HASCOVER=true
+fi
+
+FILE_LIST=("$DIRECTORY"*.flac)
+FILE=${FILE_LIST[0]}
+
+ARTIST=$(metaflac "$FILE" --show-tag=ARTIST | sed s/.*=//g)
+ALBUM=$(metaflac "$FILE" --show-tag=ALBUM | sed s/.*=//g)
+DATE=$(metaflac "$FILE" --show-tag=DATE | sed s/.*=//g)
+
+mkdir -p "/Users/king/Music/Google Music Upload/$ARTIST/[$DATE] $ALBUM"
+
+for a in "$DIRECTORY"*.flac; do
+    #OUTF="${a[@]/%flac/mp3}"
+
+    ARTIST=$(metaflac "$a" --show-tag=ARTIST | sed s/.*=//g)
+    TITLE=$(metaflac "$a" --show-tag=TITLE | sed s/.*=//g)
+    ALBUM=$(metaflac "$a" --show-tag=ALBUM | sed s/.*=//g)
+    GENRE=$(metaflac "$a" --show-tag=GENRE | sed s/.*=//g)
+    TRACKNUMBER=$(metaflac "$a" --show-tag=TRACKNUMBER | sed s/.*=//g)
+    TRACKNUMBER=`printf %02d $TRACKNUMBER`
+    DATE=$(metaflac "$a" --show-tag=DATE | sed s/.*=//g)
+
+    OUTF="/Users/king/Music/Google Music Upload/$ARTIST/[$DATE] $ALBUM/${TRACKNUMBER:-0} - $TITLE.mp3"
+
+    flac -c -d "$a" | lame -V0 --add-id3v2 --pad-id3v2 --ignore-tag-errors \
+        --ta "$ARTIST" --tt "$TITLE" --tl "$ALBUM" --tg "${GENRE:-12}" \
+        --tn "${TRACKNUMBER:-0}" --ty "$DATE" --ti "$DIRECTORY/$COVER" - "$OUTF"
+done

@@ -1,0 +1,4 @@
+flask
+.DS_Store
+*.swp
+*.bak

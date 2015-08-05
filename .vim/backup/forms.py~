@@ -1,0 +1,19 @@
+from flask.ext.wtf import Form
+from wtforms import StringField, BooleanField, PasswordField, DateTimeField, IntegerField
+from wtforms.validators import DataRequired
+
+class LoginForm(Form):
+    email = StringField('email', validators=[DataRequired()])
+    password = PasswordField('password', validators=[DataRequired()])
+
+class RegForm(Form):
+    fname = StringField('fname', validators=[DataRequired()])
+    lname = StringField('lname', validators=[DataRequired()])
+    email = StringField('email', validators=[DataRequired()])
+    password1 = PasswordField('password', validators=[DataRequired()])
+    password2 = PasswordField('password', validators=[DataRequired()])
+    
+class NewEventForm(Form):
+    event_name = StringField('event_name', validators=[DataRequired()])
+    datetimepicker = DateTimeField('datetimepicker', format='%m/%d/%Y %H:%M %p', validators=[DataRequired()])
+    price = IntegerField('price', validators=[DataRequired()])

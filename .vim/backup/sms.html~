@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block content %}
+<script type="text/javascript">
+
+    $(document).ready(function() {
+            $('#groupSelect').multiselect({
+                buttonText: function(options, select) {
+                    if (options.length == 0) {
+                        return 'None selected <b class="caret"></b>';
+                    }
+                    else if (options.length > 3) {
+                        return options.length + ' selected <b class="caret"></b>';
+                    }
+                    else {
+                        var selected = '';
+                        options.each(function() {
+                        selected += $(this).text() + ', ';
+                    });
+                    return selected.substr(0, selected.length -2) + ' <b class="caret"></b>';
+                    }
+                },
+                maxHeight: 300,
+                includeSelectallOption: true,
+                buttonClass: 'btn btn-info',
+            });
+    })
+
+    $(function(){
+        $("input[name='recipients']").change(function(){
+            console.log('its working');
+            if ($("#rec-global:checked").val()) {
+                console.log('rec global');
+                $("#groupSelect").attr("disabled", true);
+                $("#groupSelect").multiselect('rebuild');
+            }
+            if ($("#rec-selected:checked").val()) {
+                console.log('rec select');
+                $("#groupSelect").attr("disabled", false);
+                $("#groupSelect").multiselect('rebuild');
+            }
+         })
+
+        $('#messageText').keyup(function () {
+            var max = 140;
+            var len = $(this).val().length;
+            if (len >= max) {
+                var char = max - len;
+                $('#charCount').css('color', 'red')
+                $('#charCount').text(char + ' characters remaining');
+            } 
+            else {
+                var char = max - len;
+                $('#charCount').css('color', 'black')
+                $('#charCount').text(char + ' characters remaining');
+            }
+        })
+            
+    })
+</script>
+
+<div class="container" style="padding-top:20px;">
+    <div class="well">
+
+        <div class="row">
+            <form class="form-horizontal" role="form" action="/sms/send" method="POST">
+                <div class="form-group">
+                    <label for="messageText" class="col-md-2 col-md-offset-2 control-label">Message</label>
+                    <div class="col-md-5">
+                        <textarea class="form-control" name="messageText" id="messageText" placeholder="Enter message text here" rows="3"></textarea>
+                        <h6 class="pull-right" id="charCount">140 characters remaining</h6>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-md-offset-2 control-label">Recipients</label>
+                    <div class="col-md-3"> 
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="recipients" id="rec-global" value="global" checked>
+                                Send text to all customers
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="recipients" id="rec-selected" value="selected">
+                                Send only to selected groups
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-2"> 
+                        <select class="form-control" id="groupSelect" multiple="multiple" disabled>
+                            <option>Businessmen</option>
+                            <option>Younger Crowd</option>
+                            <option>Ladies Night</option>
+                            <option>Another Group</option>
+                            <option>Yet Another Group</option>
+                        </select>
+                    </div>
+     
+                </div>
+                <div class="col-md-3 col-md-offset-5" style="text-align: center;">
+                    <button type="submit" class="btn btn-primary">Send Text</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+                    
+{% endblock %}

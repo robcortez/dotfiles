@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Welcome to Golfsnap</h1>
+    <p>Gone are the days using an excel spreadsheet to organize your golf tournaments. The year is 2015. Let us help you.</p>
+    <p><a class="btn btn-primary btn-lg" href="/register">Create an account</a>
+</div>
+
+{% endblock %}

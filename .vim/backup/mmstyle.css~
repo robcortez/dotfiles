@@ -1,0 +1,5 @@
+.wrapper {
+    background: #333;
+    width: 60%;
+}
+

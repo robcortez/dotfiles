@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+
+<ul class="nav nav-tabs nav-justified">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation"><a href="#">Schedule</a></li>
+  <li role="presentation"><a href="#">Scores</a></li>
+</ul>
+
+<h1 class="dashboard-greeting">Hello, {{user.fname}}!</h1>
+
+<div class="col-md-6 well" id="upcoming-events">
+    <h3 style="text-align:center;">Upcoming Events</h3>
+    <table class="table table-striped table-events">
+        <thead>
+            <tr>
+                <td>Event</td>
+                <td>Date/Time</td>
+                <td style="text-align: center;">Price</td>
+                <td style="text-align: center;">Registered</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for e in events %}
+            <tr>
+                <td><a href="/event/{{e.id}}">{{e.event_name}}</a></td>
+                <td>{{e.datetime}}</td>
+                <td style="text-align: center;">$ {{e.price}}</td>
+                <td style="text-align: center;">
+                    {% if e.is_registered(current_user) %}
+                    <span class="glyphicon glyphicon-ok-circle" style="color: green;"></span>
+                    {% else %}
+                    <a class="btn btn-primary btn-xs" href="/event/{{e.id}}/register">Register</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+</table>
+
+   
+</div>
+
+<div class="col-md-6" id="longest-drive-chart">
+</div>    
+
+
+
+<script type="text/javascript">
+$(function () {
+    $('#longest-drive-chart').highcharts({
+        title: {
+            text: 'Longest Drive',
+            x: -20 //center
+        },
+        subtitle: {
+            text: 'Sorted by event',
+            x: -20
+        },
+        xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        },
+        yAxis: {
+            title: {
+                text: 'Yards'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: ' yards'
+        },
+        credits: {
+            enabled: false,
+        },
+        legend: {
+            enabled: false,
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: 'Drive',
+            data: [378, 320, 439, 290, 403, 295, 372, 335, 403, 383, 309, 296]
+        }]
+    });
+});
+</script>
+<script src="/static/js/highcharts.js"></script>
+
+{% endblock %}
