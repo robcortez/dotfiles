@@ -17,8 +17,8 @@
 $raw
 
 # Command Line History (newest to oldest):
-:wq
 :q
+:wq
 :%s/crip/raw/g
 :w
 :bd!
@@ -79,7 +79,7 @@ $raw
 # Registers:
 "0	LINE	0
 	testign for love
-""1	LINE	0
+"1	LINE	0
 	414
 <[electrum.freeplayed.com]:2123 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDPP7TxzgIyOMiqveMKl70IgpGhAKreFlsuj1+7lAAyY/RWj9bK2kFzL5aZK8ljw+iIDZMuQn3JLnG3bKuayOHhPK6p17KIagcw8PSxN5ZNQ3DCMIAG/MzMx1inRFUJjGCLbB1gBYgLnmDPcL7NMFqmc9hm21oEgqykFfHrsEksfUyjA0gx5YLT+9LmWNoQ6Iqi2oLwmkvQX0oArNcwxefauKyNmfQHkxpQ2kLiGovEaC3hLjuoasUAUbAktFgGZCGuTYHYi6ORQfp8qbWZUbXoXYytRijok0YeSHiNqNfuOT5GeDF4OtB3FcjuPKtB7+wZ+VsZVzI1hrY4UM+oUWR3
 "2	LINE	0
@@ -126,22 +126,32 @@ $raw
 	wwwi€kb€kb€kb€kb€kb€kb€kb:w€ýc€ýb€ýc€ýbkjkjkjjjkjjkkjjjkkjkkkjjjkkkkjjjjkkkkkkky2y:b bas	jjjjjjjjjjjjjjkp:w€ýc€ýb€ý,€ý.dwdddddkkkkkkkkkkkkjjjjjjjjjjj}}}}}}}}}kkkjou:w:b eve	y2y:b bas	p>>j.:w€ýc€ýbkkjjjjkko:w€kbo
 "w	CHAR	0
 	wwwwbcwcwcw€kb€kb€kb€kbldwdwdwi€kb><yypwwwwwwwwcweventswcitEvents:wo</ul€kb€kb€kb€kb>€kb€kb€kb€kb€kb€kb€kb€kb</ul>€kl€kl€kl€kl€kl€kl€kd€ku€krdl<<o</div></€kb€kb</div>:w€ýc€ýb{{{wwwcwadmin_base:w€ýc€ýbjjjjjkkk€ü	€ü	€ü	kkjPP€kb€kbdd</
-"-	CHAR	0
-	class="container">
+""-	CHAR	0
+	/
 
 # File marks:
-'0  2  4  ~/Source/dotfiles/.gitignore
-'1  25  0  ~/.ssh/known_hosts
-'2  1  0  ~/.ssh/authorized_keys
-'3  1  0  /private/etc/resolv.conf
-'4  21  0  ~/Source/paperbak/paperbak.mak
-'5  24  27  ~/Projects/golfsnap/app/templates/admin_base.html
-'6  6  12  ~/Projects/golfsnap/README.md
-'7  7  10  ~/Projects/golfsnap/README.md
-'8  5  4  ~/Projects/golfsnap/.gitignore
-'9  4  4  ~/Projects/golfsnap/.gitignore
+'0  3  10  ~/.bash_profile
+'1  1  0  ~/.profile
+'2  1  105  ~/.bash_profile
+'3  1  0  ~/.bash_
+'4  2  0  ~/.profile
+'5  7  21  ~/bin/update-dotfiles
+'6  3  8  ~/.gitignore
+'7  2  4  ~/Source/dotfiles/.gitignore
+'8  25  0  ~/.ssh/known_hosts
+'9  1  0  ~/.ssh/authorized_keys
 
 # Jumplist (newest first):
+-'  3  10  ~/.bash_profile
+-'  1  0  ~/.bash_profile
+-'  1  0  ~/.profile
+-'  1  0  ~/.bash_
+-'  2  0  ~/.profile
+-'  22  43  ~/.profile
+-'  7  21  ~/bin/update-dotfiles
+-'  1  0  ~/bin/update-dotfiles
+-'  3  8  ~/.gitignore
+-'  1  0  ~/.gitignore
 -'  2  4  ~/Source/dotfiles/.gitignore
 -'  1  0  ~/Source/dotfiles/.gitignore
 -'  25  0  ~/.ssh/known_hosts
@@ -228,22 +238,51 @@ $raw
 -'  70  0  ~/Projects/golfsnap/app/static/css/base.css
 -'  74  0  ~/Projects/golfsnap/app/static/css/base.css
 -'  80  0  ~/Projects/golfsnap/app/static/css/base.css
--'  86  0  ~/Projects/golfsnap/app/static/css/base.css
--'  90  0  ~/Projects/golfsnap/app/static/css/base.css
--'  93  0  ~/Projects/golfsnap/app/static/css/base.css
--'  91  0  ~/Projects/golfsnap/app/static/css/base.css
--'  15  0  ~/Projects/golfsnap/app/static/css/base.css
--'  39  57  ~/.scripts/flac2mp3
--'  44  10  ~/.scripts/flac2mp3
--'  25  19  ~/.scripts/flac2mp3
--'  46  4  ~/.scripts/flac2mp3
--'  42  54  ~/.scripts/flac2mp3
--'  17  17  ~/.scripts/flac2mp3
--'  13  3  ~/.vimrc
--'  24  27  ~/Projects/golfsnap/app/templates/admin_base.html
--'  1  0  ~/Projects/golfsnap/app/templates/admin_base.html
 
 # History of marks within files (newest to oldest):
+
+> ~/.bash_profile
+	"	3	10
+	^	1	106
+	.	1	106
+	+	1	18
+	+	1	106
+
+> ~/.profile
+	"	1	0
+	^	11	9
+	.	11	11
+	+	3	0
+	+	4	0
+	+	16	0
+	+	21	0
+	+	22	0
+	+	16	16
+	+	17	3
+	+	18	4
+	+	19	4
+	+	20	4
+	+	8	38
+	+	13	16
+	+	13	16
+	+	13	16
+	+	14	4
+	+	11	11
+
+> ~/.bash_
+	"	1	0
+
+> ~/bin/update-dotfiles
+	"	7	21
+	^	7	22
+	.	7	21
+	+	7	21
+
+> ~/.gitignore
+	"	3	8
+	^	3	9
+	.	3	8
+	+	3	8
 
 > ~/Source/dotfiles/.gitignore
 	"	2	4
@@ -2528,194 +2567,8 @@ $raw
 	.	1	0
 	+	1	0
 
-> ~/.profile
-	"	22	43
-	^	11	9
-	.	11	11
-	+	3	0
-	+	4	0
-	+	16	0
-	+	21	0
-	+	22	0
-	+	16	16
-	+	17	3
-	+	18	4
-	+	19	4
-	+	20	4
-	+	8	38
-	+	13	16
-	+	13	16
-	+	13	16
-	+	14	4
-	+	11	11
-
-> ~/.bash_profile
-	"	1	0
-	^	1	91
-	.	1	91
-	+	1	91
-
 > ~/Downloads/hammerhead-ktu84p/flash-all.sh
 	"	1	0
 
 > ~/Downloads/pdfminer-master/build/scripts-2.7/pdf2txt.py
 	"	90	0
-
-> ~/Projects/tmm/config.py
-	"	1	0
-	^	15	51
-	.	15	51
-	+	18	32
-	+	30	0
-	+	18	24
-	+	22	41
-	+	23	20
-	+	26	28
-	+	29	33
-	+	31	0
-	+	15	51
-
-> ~/Projects/tmm/NERD_tree_1
-	"	14	0
-	.	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-	+	1	0
-
-> ~/Projects/tmm/-MiniBufExplorer-
-	"	1	13
-	.	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
-	+	2	0
