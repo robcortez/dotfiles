@@ -1,1 +1,0 @@
-lpadmin -p STU_Student_Printer -v popup://10.1.2.150/STU_Student_Printer -E -P generpcl

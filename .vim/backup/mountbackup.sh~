@@ -1,3 +1,0 @@
-#!/bin/sh 
-
-busybox mount -t cifs -o rw,file_mode=0777,dir_mode=0777,uid=1000,gid=1000,unc=\\\\10.0.21.1\\Backups //10.0.21.1/Backups /sdcard/backup

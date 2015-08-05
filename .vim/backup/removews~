@@ -1,5 +1,0 @@
-#!/bin/bash
-
-for a in *; do
-    mv "$a" "${a// /_}"
-done
