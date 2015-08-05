@@ -17,10 +17,10 @@
 $raw
 
 # Command Line History (newest to oldest):
-:q
 :wq
-:%s/crip/raw/g
 :w
+:q
+:%s/crip/raw/g
 :bd!
 :bn!
 :w app/templates/admin_base.html
@@ -77,8 +77,8 @@ $raw
 # Input Line History (newest to oldest):
 
 # Registers:
-"0	LINE	0
-	testign for love
+""0	LINE	0
+	.vim/undo
 "1	LINE	0
 	414
 <[electrum.freeplayed.com]:2123 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDPP7TxzgIyOMiqveMKl70IgpGhAKreFlsuj1+7lAAyY/RWj9bK2kFzL5aZK8ljw+iIDZMuQn3JLnG3bKuayOHhPK6p17KIagcw8PSxN5ZNQ3DCMIAG/MzMx1inRFUJjGCLbB1gBYgLnmDPcL7NMFqmc9hm21oEgqykFfHrsEksfUyjA0gx5YLT+9LmWNoQ6Iqi2oLwmkvQX0oArNcwxefauKyNmfQHkxpQ2kLiGovEaC3hLjuoasUAUbAktFgGZCGuTYHYi6ORQfp8qbWZUbXoXYytRijok0YeSHiNqNfuOT5GeDF4OtB3FcjuPKtB7+wZ+VsZVzI1hrY4UM+oUWR3
@@ -126,32 +126,34 @@ $raw
 	wwwi€kb€kb€kb€kb€kb€kb€kb:w€ýc€ýb€ýc€ýbkjkjkjjjkjjkkjjjkkjkkkjjjkkkkjjjjkkkkkkky2y:b bas	jjjjjjjjjjjjjjkp:w€ýc€ýb€ý,€ý.dwdddddkkkkkkkkkkkkjjjjjjjjjjj}}}}}}}}}kkkjou:w:b eve	y2y:b bas	p>>j.:w€ýc€ýbkkjjjjkko:w€kbo
 "w	CHAR	0
 	wwwwbcwcwcw€kb€kb€kb€kbldwdwdwi€kb><yypwwwwwwwwcweventswcitEvents:wo</ul€kb€kb€kb€kb>€kb€kb€kb€kb€kb€kb€kb€kb</ul>€kl€kl€kl€kl€kl€kl€kd€ku€krdl<<o</div></€kb€kb</div>:w€ýc€ýb{{{wwwcwadmin_base:w€ýc€ýbjjjjjkkk€ü	€ü	€ü	kkjPP€kb€kbdd</
-""-	CHAR	0
+"-	CHAR	0
 	/
 
 # File marks:
-'0  3  10  ~/.bash_profile
-'1  1  0  ~/.profile
-'2  1  105  ~/.bash_profile
-'3  1  0  ~/.bash_
-'4  2  0  ~/.profile
-'5  7  21  ~/bin/update-dotfiles
-'6  3  8  ~/.gitignore
-'7  2  4  ~/Source/dotfiles/.gitignore
-'8  25  0  ~/.ssh/known_hosts
-'9  1  0  ~/.ssh/authorized_keys
+'0  6  17  ~/bin/update-dotfiles
+'1  2  12  ~/.gitignore
+'2  3  10  ~/.bash_profile
+'3  1  0  ~/.profile
+'4  1  105  ~/.bash_profile
+'5  1  0  ~/.bash_
+'6  2  0  ~/.profile
+'7  8  21  ~/bin/update-dotfiles
+'8  3  8  ~/.gitignore
+'9  2  4  ~/Source/dotfiles/.gitignore
 
 # Jumplist (newest first):
+-'  6  17  ~/bin/update-dotfiles
+-'  1  0  ~/bin/update-dotfiles
+-'  2  12  ~/.gitignore
+-'  1  0  ~/.gitignore
 -'  3  10  ~/.bash_profile
 -'  1  0  ~/.bash_profile
 -'  1  0  ~/.profile
 -'  1  0  ~/.bash_
 -'  2  0  ~/.profile
 -'  22  43  ~/.profile
--'  7  21  ~/bin/update-dotfiles
--'  1  0  ~/bin/update-dotfiles
+-'  8  21  ~/bin/update-dotfiles
 -'  3  8  ~/.gitignore
--'  1  0  ~/.gitignore
 -'  2  4  ~/Source/dotfiles/.gitignore
 -'  1  0  ~/Source/dotfiles/.gitignore
 -'  25  0  ~/.ssh/known_hosts
@@ -238,8 +240,25 @@ $raw
 -'  70  0  ~/Projects/golfsnap/app/static/css/base.css
 -'  74  0  ~/Projects/golfsnap/app/static/css/base.css
 -'  80  0  ~/Projects/golfsnap/app/static/css/base.css
+-'  3  10  ~/.bash_profile
 
 # History of marks within files (newest to oldest):
+
+> ~/bin/update-dotfiles
+	"	6	17
+	^	6	18
+	.	6	18
+	+	8	21
+	+	6	18
+
+> ~/.gitignore
+	"	2	12
+	^	2	13
+	.	2	12
+	+	3	8
+	+	4	10
+	+	3	10
+	+	2	12
 
 > ~/.bash_profile
 	"	3	10
@@ -271,18 +290,6 @@ $raw
 
 > ~/.bash_
 	"	1	0
-
-> ~/bin/update-dotfiles
-	"	7	21
-	^	7	22
-	.	7	21
-	+	7	21
-
-> ~/.gitignore
-	"	3	8
-	^	3	9
-	.	3	8
-	+	3	8
 
 > ~/Source/dotfiles/.gitignore
 	"	2	4
