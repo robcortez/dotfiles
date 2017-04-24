@@ -24,7 +24,5 @@ fi
 echo
 echo "Your new system is now fresh af"
 echo "This script will now self-destruct"
-#rm -- "$0"
-
-
+rm -- "$0"
 
