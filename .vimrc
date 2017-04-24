@@ -111,3 +111,8 @@ if exists("+undofile")
   set undodir+=~/.vim/undo//
   set undofile
 endif
+
+function SetupEnvironment()
+    :PluginInstall
+    :qa
+endfunction
