@@ -1,5 +1,5 @@
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set smarttab
 syntax on
 set smartindent
@@ -15,7 +15,8 @@ colorscheme gruvbox
 set background=dark
 set laststatus=2
 set t_co=256
-set guifont=Droid\ Sans\ Mono:h12
+" set guifont=Droid\ Sans\ Mono:h12
+set guifont=Hack:h12
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -36,6 +37,10 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
+Plugin 'hashivim/vim-terraform'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 " +++++++++++++++++++++++++++++++++++++++++++++
 " Plugins End
