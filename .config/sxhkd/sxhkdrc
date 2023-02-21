@@ -1,0 +1,119 @@
+# hotkeys
+
+# terminal
+super + Return
+    alacritty
+
+# rofi - drun
+alt + @space
+    rofi -show drun -theme $HOME/.local/share/rofi/themes/nord/nord.rasi
+
+# rofi
+super + {r,p}
+    rofi -show {run,window} -theme $HOME/.local/share/rofi/themes/nord/nord.rasi
+
+# rofi power
+super + shift + p
+    rofi -show p -modi p:rofi-power-menu \
+      -theme $HOME/.local/share/rofi/themes/nord/nord.rasi \
+      -width 20 \
+      -lines 6
+
+# rofi wifi
+super + shift + w
+    $HOME/.config/polybar/scripts/rofi-network-manager/rofi-network-manager.sh
+
+# sxhkd help
+super + slash
+    sxhkd-help
+
+# browser
+super + shift + b
+	firefox
+
+# reload sxhkd
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# bspwm
+
+# quit/restart
+super + alt + {q,r}
+	bspc {quit,wm- r}
+
+# close and kill
+super + {_,shift + }w
+	bspc node -{c,k}
+
+## navigation
+
+super + {_,shift + }{1-9,0}
+    bspc {desktop -f,node -d} '^{1-9,10}'
+
+#
+# media keys
+#
+
+# screen brightness
+XF86MonBrightness{Down,Up}
+	brightnessctl s 10%{-,+}
+
+# keyboard backlight
+{_,shift + } XF86Tools
+    brightnessctl --device='tpacpi::kbd_backlight' s 50%{+,-}
+
+# audio
+XF86AudioRaiseVolume
+	amixer set Master 5%+
+
+XF86AudioLowerVolume
+	amixer set Master 5%-
+
+XF86AudioMute
+	amixer set Master {mute, unmute}
+
+#
+# window state
+#
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# set the window state
+super + {t,shift + t,shift + @space,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+
+#
+# focus
+#
+
+super + {h,j,k,l}
+    bspc node -f {west,south,north,east}
+
+
+#
+# move/resize
+#
+
+# move
+super + shift + {h,j,k,l}
+    bspwm-smart-move {west,south,north,east}
+
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+

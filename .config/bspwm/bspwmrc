@@ -1,0 +1,44 @@
+#!/bin/sh
+
+############################
+# AUTOSTART
+############################
+killall picom
+killall polybar
+killall redshift
+killall dunst
+killall unclutter
+killall sxhkd
+
+# key repeat rate
+xset r rate 200 25
+
+# swap caps + esc
+setxkbmap -option caps:swapescape
+
+# cursor
+xsetroot -cursor_name left_ptr
+
+# 10 min timeout on lockscreen
+xset s 600 5
+xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock &
+
+sh ~/.config/polybar/launch.sh
+dunst &
+unclutter -idle 3 &
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+############################
+# CONFIG
+############################
+
+bspc monitor -d TERM WEB CODE MISC CHAT DISCORD MUSIC
+
+bspc config border_width         2
+bspc config window_gap          12
+
+############################
+# RULES
+############################
+
+bspc rule -a firefox desktop=^2 follow=on
