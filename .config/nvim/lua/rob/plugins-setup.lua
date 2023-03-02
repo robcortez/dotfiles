@@ -36,6 +36,9 @@ return packer.startup(function(use)
 	-- gruvbox-material colorscheme
 	use("sainnhe/gruvbox-material")
 
+  -- filetype detection
+  use("nathom/filetype.nvim")
+
 	-- split + window navigation
 	use("christoomey/vim-tmux-navigator")
 
