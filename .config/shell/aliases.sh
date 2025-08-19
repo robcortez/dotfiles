@@ -6,6 +6,10 @@ alias cdinfra="cd $HOME/workspace/services.infra"
 alias cdinfrac="cd $HOME/workspace/services.infra.common"
 alias sb="cd $HOME/notes"
 
+# python
+alias sv="source .venv/bin/activate"
+alias dv="deactivate"
+
 # misc
 alias vim="nvim"
 alias v="nvim"
@@ -15,6 +19,8 @@ alias ydl="yt-dlp"
 alias reshell="source $HOME/.zshrc"
 alias userchrome="vim '$HOME/Library/Application Support/Firefox/Profiles/jjsg5f3v.default-release/chrome/userChrome.css'"
 alias z="zoxide"
+alias hammer="az account clear; rm -r $HOME/.kube/cache; kubelogin remove-tokens; az login"
+alias myip="curl https://ifconfig.co"
 
 # tf
 alias tf="terraform"

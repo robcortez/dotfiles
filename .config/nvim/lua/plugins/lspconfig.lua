@@ -22,7 +22,6 @@ return {
           },
         },
         powershell_es = {},
-        azure_pipelines_ls = {},
         terraformls = {},
         helm_ls = {
           settings = {
