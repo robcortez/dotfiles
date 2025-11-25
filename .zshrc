@@ -18,14 +18,17 @@ export LANG="en_US.UTF-8"
 export EDITOR="nvim"
 export VISUAL="nvim"
 export TERM="tmux-256color"
-export BROWSER="wslview"
+export BROWSER="firefox"
 
 ####################################################
 # Work specific config
 ####################################################
 
-if [[ $(grep -iq microsoft /proc/version) ]]; then
-  export KUBECONFIG="/mnt/c/Users/robcortez/.kube/config"
+if [[ -f /proc/version ]]; then 
+  if [[ $(grep -iq microsoft /proc/version) ]]; then
+    export KUBECONFIG="/mnt/c/Users/robcortez/.kube/config"
+    export BROWSER="wslview"
+  fi
 fi
 
 ####################################################
@@ -44,16 +47,16 @@ setopt SHARE_HISTORY
 # oh-my-zsh
 ####################################################
 
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="powerlevel10k/powerlevel10k"
-source $ZSH/oh-my-zsh.sh
-
 plugins=(
     vi-mode
     git
     zsh-autosuggestions
     zsh-fzf-history-search
 )
+
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+source $ZSH/oh-my-zsh.sh
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#555555"
 
@@ -68,5 +71,5 @@ VI_MODE_CURSOR_OPPEND=0
 # source aliases
 [[ ! -f ~/.config/shell/aliases.sh ]] || source ~/.config/shell/aliases.sh
 
-# asdf
-[[ ! -f "$HOME/.asdf/asdf.sh" ]] || source "$HOME/.asdf/asdf.sh" 
+# mise
+eval "$(mise activate zsh)"
