@@ -37,6 +37,7 @@ alias dots="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 # k8s
 alias k="kubectl"
+alias kk="k9s"
 alias kpo="kubectl get po"
 alias kctx="kubectl ctx"
 alias kc="kubectl ctx"
