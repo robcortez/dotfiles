@@ -17,8 +17,8 @@ export PATH=${KREW_ROOT:-$HOME/.krew}/bin:$HOME/bin:$HOME/workspace/go/bin:/usr/
 export LANG="en_US.UTF-8"
 export EDITOR="nvim"
 export VISUAL="nvim"
-export TERM="tmux-256color"
-export BROWSER="firefox"
+export TERM="xterm-256color"
+export BROWSER="open -a Firefox"
 
 ####################################################
 # Work specific config
