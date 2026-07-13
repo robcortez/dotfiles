@@ -21,6 +21,7 @@ alias userchrome="vim '$HOME/Library/Application Support/Firefox/Profiles/jjsg5f
 alias z="zoxide"
 alias hammer="az account clear; rm -r $HOME/.kube/cache; kubelogin remove-tokens; az login"
 alias myip="curl https://ifconfig.co"
+alias m="mise"
 
 # tf
 alias tf="terraform"
