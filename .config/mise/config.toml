@@ -1,0 +1,11 @@
+[tools]
+azure = { version = "latest", uvx_args = "--prerelease=allow" }
+fzf = "latest"
+go = "latest"
+kubectl = "latest"
+kubelogin = "latest"
+neovim = "latest"
+pipx = "latest"
+python = "latest"
+terraform = "latest"
+terragrunt = "latest"
