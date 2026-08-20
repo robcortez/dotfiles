@@ -34,7 +34,7 @@ alias tw="task project:work"
 alias twa="task add project:work"
 
 # git
-alias dots="git --git-dir=$HOME/.dots/ --work-tree=$HOME"
+alias dots="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 # k8s
 alias k="kubectl"
